@@ -57,10 +57,10 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="mb-6">
               <h2 className="text-2xl font-bold text-white mb-4">
-                FOIT Student Society
+                CreatioNeX
               </h2>
               <p className="text-gray-300 leading-relaxed mb-6">
-                A student-run organization at City University Malaysia dedicated to uniting, developing, and transforming the next generation of tech leaders.
+                An event organisation dedicated to uniting, developing, and transforming the next generation of tech leaders.
               </p>
             </div>
 
@@ -69,8 +69,8 @@ const Footer = () => {
               <div className="flex items-center text-gray-300">
                 <MapPin className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
                 <span className="text-sm">
-                  City University Malaysia<br />
-                  Petaling Jaya, Selangor
+                  University of BridgeOut<br />
+                  Cyberjaya, Selangor
                 </span>
               </div>
               <div className="flex items-center text-gray-300">
@@ -176,7 +176,7 @@ const Footer = () => {
 
             {/* Copyright */}
             <div className="text-sm text-gray-400">
-              © {currentYear} FOIT Student Society. All rights reserved.
+              © {currentYear} CreatioNeX.org. All rights reserved.
             </div>
 
             {/* Legal Links */}
@@ -196,7 +196,7 @@ const Footer = () => {
           {/* Additional Info */}
           <div className="mt-4 pt-4 border-t border-gray-800 text-center">
             <p className="text-xs text-gray-500">
-              Made by FOIT Student Society Development Team |
+              Made by CreatioNeX Development Team |
               <span className="ml-1">Empowering students through technology and community</span>
             </p>
           </div>
