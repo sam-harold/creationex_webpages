@@ -37,14 +37,14 @@ const Team = () => {
       id: 1,
       image:
         'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=300&fit=crop&face',
-      name: 'Lau Jia Mun',
+      name: 'Muhammad Syahir',
       position: 'President',
     },
     {
       id: 2,
       image:
         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&face',
-      name: 'MD Nazmul',
+      name: 'Janwell Edmaxron',
       position: 'Vice President I',
     },
     {
