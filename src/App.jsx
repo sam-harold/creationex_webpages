@@ -1,23 +1,27 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
+import Contact from './pages/Contact';
 import Team from './pages/Team';
+import Events from './pages/Events';
+import EventDetails from './pages/EventDetails';
+import Initiative from './pages/Initiative';
+import RSVP from './pages/RSVP';
 import NotFound from './pages/NotFound';
-import MockArticle from './pages/MockArticle';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<About />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/board-members" element={<Team />} />
-        <Route path="/commitee-members" element={<Team />} />
-        <Route path="/initiatives" element={<Team />} />
-        <Route path="/mock-article" element={<MockArticle />} />
+        <Route path="/home" element={<Home />} /> # Sam
+        <Route path="/about" element={<About />} /> # Member 1
+        <Route path="/contact" element={<Contact />} /> # Sam
+        <Route path="/team" element={<Team />} /> # Sam
+        <Route path="/events" element={<Events />} /> # Member 2 (List of Events)
+        <Route path="/events/:eventId" element={<EventDetails />} /> Member 3 (More Advance, Fetching and Display event details by Id)
+        <Route path="/initiatives" element={<Initiative />} /> # Member 4 (Maybe SDG)
+        <Route path="/rsvp/;eventId" element={<RSVP />} /> # Member 5 (More Advance, Fetching event details by Id)
 
         <Route path="*" element={<NotFound />} />
       </Routes>
