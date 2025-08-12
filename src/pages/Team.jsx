@@ -10,10 +10,9 @@ const Team = () => {
       id: 1,
       image:
         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&face',
-      // https://unsplash.com/photos/captcha-cvBBO4PzWPg?w=400&h=300&fit=crop&face
-      name: 'Mr. Nadzmirul Izzad',
-      title: 'Lecturer II, FOIT',
-      position: 'Supervisor',
+      name: 'Sam Harold',
+      title: 'Student, UBO',
+      position: 'Head of CreatioNeX',
     },
     {
       id: 2,
