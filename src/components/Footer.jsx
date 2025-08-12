@@ -1,6 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Facebook, Instagram, Twitter, Linkedin, Youtube, Mail, Phone, MapPin, ExternalLink} from 'lucide-react';
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Youtube,
+  Mail,
+  Phone,
+  MapPin,
+  ExternalLink,
+} from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,7 +21,7 @@ const Footer = () => {
     { name: 'Events', path: '/events' },
     { name: 'Team', path: '/team' },
     { name: 'Contact', path: '/contact' },
-    { name: 'Join Us', path: '/join' }
+    { name: 'Join Us', path: '/join' },
   ];
 
   const resources = [
@@ -20,7 +30,7 @@ const Footer = () => {
     { name: 'Resources', path: '/resources' },
     { name: 'FAQ', path: '/faq' },
     { name: 'Support', path: '/support' },
-    { name: 'Feedback', path: '/feedback' }
+    { name: 'Feedback', path: '/feedback' },
   ];
 
   const programs = [
@@ -29,22 +39,37 @@ const Footer = () => {
     { name: 'Networking Events', path: '/events?category=networking' },
     { name: 'Tech Talks', path: '/events?category=tech-talks' },
     { name: 'Career Development', path: '/events?category=career' },
-    { name: 'Community Service', path: '/events?category=community' }
+    { name: 'Community Service', path: '/events?category=community' },
   ];
 
   const legalLinks = [
     { name: 'Privacy Policy', path: '/privacy' },
     { name: 'Terms of Service', path: '/terms' },
     { name: 'Code of Conduct', path: '/conduct' },
-    { name: 'Accessibility', path: '/accessibility' }
+    { name: 'Accessibility', path: '/accessibility' },
   ];
 
   const socialLinks = [
-    { name: 'Facebook', icon: Facebook, url: '#', color: 'hover:text-blue-500' },
-    { name: 'Instagram', icon: Instagram, url: '#', color: 'hover:text-pink-500' },
+    {
+      name: 'Facebook',
+      icon: Facebook,
+      url: '#',
+      color: 'hover:text-blue-500',
+    },
+    {
+      name: 'Instagram',
+      icon: Instagram,
+      url: '#',
+      color: 'hover:text-pink-500',
+    },
     { name: 'Twitter', icon: Twitter, url: '#', color: 'hover:text-sky-500' },
-    { name: 'LinkedIn', icon: Linkedin, url: '#', color: 'hover:text-blue-600' },
-    { name: 'YouTube', icon: Youtube, url: '#', color: 'hover:text-red-500' }
+    {
+      name: 'LinkedIn',
+      icon: Linkedin,
+      url: '#',
+      color: 'hover:text-blue-600',
+    },
+    { name: 'YouTube', icon: Youtube, url: '#', color: 'hover:text-red-500' },
   ];
 
   return (
@@ -52,15 +77,13 @@ const Footer = () => {
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
           {/* Organization Info */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <h2 className="text-2xl font-bold text-white mb-4">
-                CreatioNeX
-              </h2>
+              <h2 className="text-2xl font-bold text-white mb-4">CreatioNeX</h2>
               <p className="text-gray-300 leading-relaxed mb-6">
-                An event organisation dedicated to uniting, developing, and transforming the next generation of tech leaders.
+                An event organisation dedicated to uniting, developing, and
+                transforming the next generation of tech leaders.
               </p>
             </div>
 
@@ -69,19 +92,26 @@ const Footer = () => {
               <div className="flex items-center text-gray-300">
                 <MapPin className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
                 <span className="text-sm">
-                  University of BridgeOut<br />
+                  University of BridgeOut
+                  <br />
                   Cyberjaya, Selangor
                 </span>
               </div>
               <div className="flex items-center text-gray-300">
                 <Mail className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
-                <a href="mailto:contact@foitsociety.org" className="text-sm hover:text-blue-400 transition-colors">
+                <a
+                  href="mailto:contact@foitsociety.org"
+                  className="text-sm hover:text-blue-400 transition-colors"
+                >
                   contact@foitsociety.org
                 </a>
               </div>
               <div className="flex items-center text-gray-300">
                 <Phone className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
-                <a href="tel:+60123456789" className="text-sm hover:text-blue-400 transition-colors">
+                <a
+                  href="tel:+60123456789"
+                  className="text-sm hover:text-blue-400 transition-colors"
+                >
                   +60 12-345 6789
                 </a>
               </div>
@@ -104,7 +134,9 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-6">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-white mb-6">
+              Quick Links
+            </h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -122,7 +154,9 @@ const Footer = () => {
 
           {/* Programs & Events */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-6">Programs & Events</h3>
+            <h3 className="text-lg font-semibold text-white mb-6">
+              Programs & Events
+            </h3>
             <ul className="space-y-3">
               {programs.map((program) => (
                 <li key={program.name}>
@@ -157,7 +191,9 @@ const Footer = () => {
 
             {/* Newsletter Signup */}
             <div className="bg-gray-800 rounded-lg p-4">
-              <h4 className="text-sm font-semibold text-white mb-2">Stay Updated</h4>
+              <h4 className="text-sm font-semibold text-white mb-2">
+                Stay Updated
+              </h4>
               <p className="text-xs text-gray-400 mb-3">
                 Get the latest news and event updates
               </p>
@@ -173,7 +209,6 @@ const Footer = () => {
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-
             {/* Copyright */}
             <div className="text-sm text-gray-400">
               © {currentYear} CreatioNeX.org. All rights reserved.
@@ -197,7 +232,9 @@ const Footer = () => {
           <div className="mt-4 pt-4 border-t border-gray-800 text-center">
             <p className="text-xs text-gray-500">
               Made by CreatioNeX Development Team |
-              <span className="ml-1">Empowering students through technology and community</span>
+              <span className="ml-1">
+                Empowering students through technology and community
+              </span>
             </p>
           </div>
         </div>
