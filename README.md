@@ -60,6 +60,6 @@ By submitting a Pull Request:
 
 ```bash
 git clone https://github.com/Samhrld-collab/creationex.dev.git
-cd creaionex
+cd creationex.dev
 npm install
 npm start
