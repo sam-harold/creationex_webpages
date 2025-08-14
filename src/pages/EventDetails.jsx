@@ -1,236 +1,242 @@
-import React, { useState } from 'react';
-import {
-  MapPin,
-  Calendar,
-  Users,
-  Camera,
-  Heart,
-  MessageCircle,
-  Share2,
-} from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
-import MainBanner from '../assets/main-banner.jpg';
+import Footer from '../components/Footer.jsx';
+import HeroSection from '../components/HeroSection.jsx';
+import { UPCOMING_EVENTS } from '../data/events.js';
 
-const About = () => {
-  const [activeTab, setActiveTab] = useState('news');
+const EventDetails = () => {
+  const { eventId } = useParams();
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const newsItems = [
-    {
-      id: 1,
-      image: MainBanner,
-      title: 'Rooftop Yoga Session',
-      description: 'Join us for morning yoga with city views',
-      time: '2 hours ago',
-      likes: 24,
-      comments: 8,
-    },
-    {
-      id: 2,
-      image: MainBanner,
-      title: 'Community BBQ Night',
-      description: "Last night's rooftop BBQ was incredible!",
-      time: '5 hours ago',
-      likes: 42,
-      comments: 15,
-    },
-    {
-      id: 3,
-      image: MainBanner,
-      title: 'Art Workshop Success',
-      description: 'Creative minds came together for pottery',
-      time: '1 day ago',
-      likes: 18,
-      comments: 6,
-    },
-    {
-      id: 4,
-      image: MainBanner,
-      title: 'Monthly Mixer',
-      description: 'New members welcomed at our social mixer',
-      time: '2 days ago',
-      likes: 35,
-      comments: 12,
-    },
-  ];
+  useEffect(() => {
+    // Debug logging
+    console.log('EventDetails - eventId from URL:', eventId);
+    console.log('EventDetails - Available events:', UPCOMING_EVENTS);
 
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: 'Wine Tasting Evening',
-      date: 'Jul 5, 2025',
-      time: '7:00 PM',
-      location: 'Rooftop Terrace',
-    },
-    {
-      id: 2,
-      title: 'Morning Meditation',
-      date: 'Jul 6, 2025',
-      time: '8:00 AM',
-      location: 'Zen Garden',
-    },
-    {
-      id: 3,
-      title: 'Cooking Class',
-      date: 'Jul 8, 2025',
-      time: '6:30 PM',
-      location: 'Kitchen Studio',
-    },
-  ];
+    // Simulate loading delay (remove in production)
+    const timer = setTimeout(() => {
+      // Find event by ID - handle both string and numeric IDs
+      let foundEvent = UPCOMING_EVENTS.find(e =>
+        e.id === eventId || e.id === parseInt(eventId)
+      );
+
+      console.log('EventDetails - Found event:', foundEvent);
+
+      if (foundEvent) {
+        setEvent(foundEvent);
+      } else {
+        setError(`Event not found for ID: ${eventId}`);
+      }
+
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [eventId]);
+
+  // useEffect(() => {
+  //   // Find event by ID - handle both string and numeric IDs
+  //   let foundEvent = UPCOMING_EVENTS.find(e =>
+  //     e.id === eventId || e.id === parseInt(eventId)
+  //   );
+  //
+  //   if (foundEvent) {
+  //     setEvent(foundEvent);
+  //   } else {
+  //     setError(`Event not found for ID: ${eventId}`);
+  //   }
+  //
+  //   setLoading(false);
+  // }, [eventId]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-5 border-blue-600"></div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error || !event) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="container mx-auto px-4 py-16 text-center">
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">Event Not Found</h1>
+          <p className="text-gray-600 mb-8">Sorry, the event you're looking for doesn't exist.</p>
+          <Link
+            to="/events"
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+          >
+            Back to Events
+          </Link>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-white">
       <Header />
+      <HeroSection
+        title={event.title}
+        subtitle="Join us for this amazing event!"
+      />
 
-      {/* Hero Section */}
-      <div
-        className="relative bg-cover bg-center min-h-screen"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${MainBanner})`,
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-        <div className="relative z-10 h-full flex flex-col justify-center items-center text-center text-white p-8 lg:p-16 min-h-screen">
-          <h1 className="text-5xl lg:text-7xl font-light mb-8 leading-tight">
-            Unite.
-            <br />
-            Inspire.
-            <br />
-            Tranform.
-          </h1>
-
-          <p className="text-xl text-white/80 max-w-md mb-8">
-            Where authentic connections flourish through shared experiences and
-            meaningful conversations.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4">
-            <button className="border border-white/50 text-white px-8 py-3 rounded-full font-medium hover:bg-white/10 transition-colors">
-              Learn More
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* News & Updates Section */}
-      <div className="bg-white">
-        <div className="max-w-6xl mx-auto">
-          {/* Tab Navigation */}
-          <div className="border-b border-gray-200">
-            <div className="flex">
-              <button
-                onClick={() => setActiveTab('news')}
-                className={`flex-1 px-6 py-4 text-center font-medium transition-colors ${
-                  activeTab === 'news'
-                    ? 'text-black border-b-2 border-black'
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}
-              >
-                <Camera className="w-5 h-5 inline mr-2" />
-                Club News
-              </button>
-              <button
-                onClick={() => setActiveTab('events')}
-                className={`flex-1 px-6 py-4 text-center font-medium transition-colors ${
-                  activeTab === 'events'
-                    ? 'text-black border-b-2 border-black'
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}
-              >
-                <Calendar className="w-5 h-5 inline mr-2" />
-                Events
-              </button>
+      {/* Event Details Section */}
+      <div className="container mx-auto px-4 py-16">
+        <div className="max-w-4xl mx-auto">
+          {/* Event Image */}
+          {event.image && (
+            <div className="mb-8">
+              <img
+                src={event.image}
+                alt={event.title}
+                className="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg"
+              />
             </div>
-          </div>
+          )}
 
-          {/* Content Area */}
-          <div className="min-h-screen">
-            {activeTab === 'news' && (
-              <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                {newsItems.map((item) => (
-                  <div
-                    key={item.id}
-                    className="bg-gray-50 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-48 object-cover"
-                    />
-                    <div className="p-4">
-                      <h3 className="font-semibold text-lg mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600 mb-3">{item.description}</p>
-                      <div className="flex items-center justify-between text-sm text-gray-500">
-                        <span>{item.time}</span>
-                        <div className="flex items-center space-x-4">
-                          <div className="flex items-center space-x-1">
-                            <Heart className="w-4 h-4" />
-                            <span>{item.likes}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <MessageCircle className="w-4 h-4" />
-                            <span>{item.comments}</span>
-                          </div>
-                          <Share2 className="w-4 h-4 cursor-pointer hover:text-gray-700" />
-                        </div>
+          {/* Event Info Grid */}
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div className="md:col-span-2">
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">About This Event</h2>
+              <p className="text-gray-600 leading-relaxed mb-6">
+                {event.description || event.longDescription ||
+                  "Join us for an incredible experience that you won't want to miss. This event brings together passionate individuals to create meaningful connections and lasting impact."}
+              </p>
+
+              {/* Event Highlights */}
+              {event.highlights && (
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">What You'll Experience</h3>
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
+                    {event.highlights.map((highlight, index) => (
+                      <li key={index}>{highlight}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Speakers/Organizers */}
+              {event.speakers && event.speakers.length > 0 && (
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">Featured Speakers</h3>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {event.speakers.map((speaker, index) => (
+                      <div key={index} className="bg-gray-50 p-4 rounded-lg">
+                        <h4 className="font-medium text-gray-800">{speaker.name}</h4>
+                        <p className="text-sm text-gray-600">{speaker.title}</p>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            )}
+                </div>
+              )}
+            </div>
 
-            {activeTab === 'events' && (
-              <div className="p-6 max-w-4xl mx-auto">
-                <h2 className="text-2xl font-semibold mb-6">Upcoming Events</h2>
-                <div className="space-y-6">
-                  {upcomingEvents.map((event) => (
-                    <div
-                      key={event.id}
-                      className="bg-gradient-to-r from-teal-50 to-blue-50 rounded-lg p-6 border-l-4 border-teal-400"
-                    >
-                      <h3 className="font-semibold text-lg mb-2">
-                        {event.title}
-                      </h3>
-                      <div className="space-y-2 text-gray-600">
-                        <div className="flex items-center space-x-2">
-                          <Calendar className="w-4 h-4" />
-                          <span>
-                            {event.date} at {event.time}
-                          </span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <MapPin className="w-4 h-4" />
-                          <span>{event.location}</span>
-                        </div>
-                      </div>
-                      <button className="mt-4 bg-teal-400 text-black px-6 py-2 rounded-full text-sm font-medium hover:bg-teal-300 transition-colors">
-                        RSVP Now
-                      </button>
-                    </div>
-                  ))}
+            {/* Event Details Sidebar */}
+            <div className="bg-gray-50 p-6 rounded-lg h-fit">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">Event Details</h3>
 
-                  <div className="mt-8 p-6 bg-gray-50 rounded-lg text-center">
-                    <Users className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-                    <h3 className="font-semibold mb-2">
-                      Want to Host an Event?
-                    </h3>
-                    <p className="text-gray-600 mb-4">
-                      Share your passion with the community
+              <div className="space-y-4">
+                {/* Date */}
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                  <div>
+                    <p className="font-medium text-gray-800">Date</p>
+                    <p className="text-gray-600">{event.displayDate || event.date}</p>
+                  </div>
+                </div>
+
+                {/* Venue (replaces Location) */}
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  <div>
+                    <p className="font-medium text-gray-800">Venue</p>
+                    <p className="text-gray-600">{event.venue || event.location}</p>
+                  </div>
+                </div>
+
+                {/* Event Status */}
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <div>
+                    <p className="font-medium text-gray-800">Status</p>
+                    <p className="text-gray-600">
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        event.active
+                          ? 'bg-green-100 text-green-800'
+                          : 'bg-gray-100 text-gray-800'
+                      }`}>
+                        {event.active ? 'Active' : 'Inactive'}
+                      </span>
                     </p>
-                    <button className="bg-black text-white px-6 py-2 rounded-full font-medium hover:bg-gray-800 transition-colors">
-                      Propose Event
-                    </button>
                   </div>
                 </div>
               </div>
-            )}
+
+              {/* Action Buttons */}
+              <div className="mt-6 space-y-3">
+                {event.active ? (
+                  <Link
+                    to={`/rsvp/${eventId}`}
+                    className="block w-full bg-blue-600 text-white text-center py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-300 font-medium"
+                  >
+                    RSVP Now
+                  </Link>
+                ) : (
+                  <div className="block w-full bg-gray-400 text-white text-center py-3 px-4 rounded-lg cursor-not-allowed font-medium">
+                    Event Inactive
+                  </div>
+                )}
+
+                <button
+                  onClick={() => window.history.back()}
+                  className="block w-full bg-gray-200 text-gray-700 text-center py-3 px-4 rounded-lg hover:bg-gray-300 transition duration-300"
+                >
+                  Go Back
+                </button>
+
+                <Link
+                  to="/events"
+                  className="block w-full text-blue-600 text-center py-2 hover:text-blue-800 transition duration-300"
+                >
+                  View All Events
+                </Link>
+              </div>
+            </div>
           </div>
+
+          {/* Contact or Additional Info */}
+          {event.contact && (
+            <div className="bg-blue-50 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Need More Information?</h3>
+              <p className="text-gray-600 mb-2">
+                Contact us at: <span className="font-medium">{event.contact}</span>
+              </p>
+            </div>
+          )}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
 
-export default About;
+export default EventDetails;

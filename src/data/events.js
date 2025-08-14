@@ -1,3 +1,6 @@
+import Event1 from "../assets/event1.jpg";
+import Event2 from "../assets/main-banner.jpg";
+
 export const UPCOMING_EVENTS = [
   {
     id: 'react-workshop-building-your-first-spa',
@@ -7,6 +10,7 @@ export const UPCOMING_EVENTS = [
     displayDate: '15 September 2025',
     venue: 'Online - Zoom',
     active: true,
+    image: Event1,
   },
   {
     id: 'tech-talk-modern-javascript-trends',
@@ -14,16 +18,17 @@ export const UPCOMING_EVENTS = [
     description: 'Discussion on the latest features and trends in JavaScript development.',
     date: '2025-09-20',
     displayDate: '20 September 2025',
-    venue: 'Main Auditorium - CityU Cyberjaya',
-    active: true,
+    venue: 'Main Auditorium - UBO Cyberjaya',
+    active: false,
+    image: Event2,
   },
   {
     id: 'lightning-talks-community-highlights',
     title: 'Lightning Talks: Community Highlights',
     description: 'Short talks by community members on a variety of dev topics.',
-    date: '2025-09-25',
+    date: '2025-07-25',
     displayDate: '25 September 2025',
-    venue: 'Conference Room B - CityU Cyberjaya',
+    venue: 'Conference Room B - UBO Cyberjaya',
     active: true,
   },
   {
@@ -32,7 +37,7 @@ export const UPCOMING_EVENTS = [
     description: 'Fast-paced coding competition focusing on solving real challenges.',
     date: '2025-10-01',
     displayDate: '1 October 2025',
-    venue: 'Innovation Hub - CityU Cyberjaya',
+    venue: 'Innovation Hub - UBO Cyberjaya',
     active: true,
   },
   {
@@ -41,7 +46,7 @@ export const UPCOMING_EVENTS = [
     description: 'Experts discuss emerging trends and technologies shaping web development.',
     date: '2025-10-05',
     displayDate: '5 October 2025',
-    venue: 'Main Auditorium - CityU Cyberjaya',
+    venue: 'Main Auditorium - UBO Cyberjaya',
     active: true,
   },
   {
@@ -50,7 +55,7 @@ export const UPCOMING_EVENTS = [
     description: 'Casual networking over coffee with fellow developers.',
     date: '2025-10-10',
     displayDate: '10 October 2025',
-    venue: 'Cafeteria - CityU Cyberjaya',
+    venue: 'Cafeteria - UBO Cyberjaya',
     active: true,
   },
   {
@@ -59,8 +64,8 @@ export const UPCOMING_EVENTS = [
     description: 'Community members showcase their latest projects and receive feedback.',
     date: '2025-10-15',
     displayDate: '15 October 2025',
-    venue: 'Innovation Hub - CityU Cyberjaya',
-    active: true,
+    venue: 'Innovation Hub - UBO Cyberjaya',
+    active: false,
   },
   {
     id: 'ama-ask-a-senior-developer',
@@ -68,7 +73,7 @@ export const UPCOMING_EVENTS = [
     description: 'Opportunity to ask questions and learn from an experienced senior developer.',
     date: '2025-10-20',
     displayDate: '20 October 2025',
-    venue: 'Conference Room A - CityU Cyberjaya',
+    venue: 'Conference Room A - UBO Cyberjaya',
     active: true,
   },
 ];
