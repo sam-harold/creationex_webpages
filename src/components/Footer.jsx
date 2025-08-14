@@ -94,7 +94,7 @@ const Footer = () => {
                 <span className="text-sm">
                   University of BridgeOut
                   <br />
-                  Cyberjaya, Selangor
+                  Sunway City, Selangor
                 </span>
               </div>
               <div className="flex items-center text-gray-300">

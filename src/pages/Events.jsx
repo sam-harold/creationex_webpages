@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
-import {
-  MapPin,
-  Calendar,
-  Users,
-  Camera,
-  Heart,
-  MessageCircle,
-  Share2,
-} from 'lucide-react';
+import { MapPin, Calendar, Users, Camera, Heart, MessageCircle, Share2 } from 'lucide-react';
 import Header from '../components/Header';
 import MainBanner from '../assets/main-banner.jpg';
 
@@ -93,14 +85,13 @@ const About = () => {
           <h1 className="text-5xl lg:text-7xl font-light mb-8 leading-tight">
             Unite.
             <br />
-            Inspire.
+            Develop.
             <br />
-            Tranform.
+            Transformation.
           </h1>
 
           <p className="text-xl text-white/80 max-w-md mb-8">
-            Where authentic connections flourish through shared experiences and
-            meaningful conversations.
+            Where developers connect and flourish through shared experiences.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">

@@ -7,6 +7,7 @@ import Events from './pages/Events';
 import EventDetails from './pages/EventDetails';
 import Initiative from './pages/Initiative';
 import RSVP from './pages/RSVP';
+import Shop from './pages/Shop';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -15,13 +16,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} /> # Sam
-        <Route path="/about" element={<About />} /> # Member 1
+        <Route path="/about" element={<About />} /> # Sam
         <Route path="/contact" element={<Contact />} /> # Sam
         <Route path="/team" element={<Team />} /> # Sam
-        <Route path="/events" element={<Events />} /> # Member 2 (List of Events)
-        <Route path="/events/:eventId" element={<EventDetails />} /> Member 3 (More Advance, Fetching and Display event details by Id)
-        <Route path="/initiatives" element={<Initiative />} /> # Member 4 (Maybe SDG)
-        <Route path="/rsvp/;eventId" element={<RSVP />} /> # Member 5 (More Advance, Fetching event details by Id)
+        <Route path="/events" element={<Events />} /> # Member 1 (List of Events, working with events.js)
+        <Route path="/events/:eventId" element={<EventDetails />} /> Member 2 (Fetching and Display event details by ID, working with events.js)
+        <Route path="/initiatives" element={<Initiative />} /> # Member 3 (List of Community Nurturing Initiative, SDG Focused, Cross University OutReach)
+        <Route path="/rsvp/:eventId" element={<RSVP />} /> # Member 4 (Fetching event details by ID, working with events.js)
+        <Route path="/store" element={<Shop />} /> # Member 5 (Ecommerce like, selling at least 6 products)
 
         <Route path="*" element={<NotFound />} />
       </Routes>

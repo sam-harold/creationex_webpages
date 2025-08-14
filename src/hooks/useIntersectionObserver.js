@@ -17,16 +17,21 @@ const useIntersectionObserver = (options = {}) => {
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       setIsIntersecting(entry.isIntersecting);
-      if (entry.isIntersecting && !hasIntersected) {
+      if (entry.isIntersecting) {
         setHasIntersected(true);
+      } else {
+        setHasIntersected(false); // reset to allow re-animation
       }
     }, memoizedOptions);
 
     const currentRef = ref.current;
     if (currentRef) observer.observe(currentRef);
 
-    return () => observer.disconnect(); // cleaner
-  }, [hasIntersected, memoizedOptions]);
+    return () => {
+      if (currentRef) observer.unobserve(currentRef);
+      observer.disconnect();
+    };
+  }, [memoizedOptions]);
 
   return { ref, isIntersecting, hasIntersected };
 };
