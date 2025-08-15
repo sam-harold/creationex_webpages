@@ -3,13 +3,13 @@ import Header from '../components/Header';
 import Footer from '../components/Footer.jsx';
 import HeroSection from '../components/HeroSection.jsx';
 
-const RSVP = () => {
+const Store = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <HeroSection
-        title="Our Initiatives"
-        subtitle="Giving Back to the Community"
+        title="Flagship Store"
+        subtitle="Support us through our top-notch Merchandise!"
       />
 
       {/* Your Code Here! */}
@@ -33,4 +33,4 @@ const RSVP = () => {
   );
 };
 
-export default RSVP;
+export default Store;
