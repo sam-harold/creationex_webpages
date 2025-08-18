@@ -1,6 +1,3 @@
-// Import images
-import Event1 from '../assets/event1.jpg';
-
 // Slides data for the homepage carousel
 export const HOMEPAGE_SLIDES = [
   {
