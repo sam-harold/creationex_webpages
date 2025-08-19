@@ -1,8 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer.jsx';
-import MainBanner from '../assets/main-banner.jpg';
-import HeroSection from '../components/HeroSection.jsx';
+import MainBanner from "../assets/main-banner.jpg"
 
 const About = () => {
 
@@ -13,7 +12,7 @@ const About = () => {
       <section className="min-h-[75vh] relative text-white overflow-hidden h-96">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img src="/banner.jpg" alt="background" className="w-full h-full object-cover" />
+          <img src={MainBanner} alt="background" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40"></div>
         </div>
         <div className="relative z-10 h-full flex flex-col items-center text-center text-white p-8 lg:p-16 min-h-screen">
