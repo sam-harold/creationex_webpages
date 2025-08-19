@@ -1,5 +1,6 @@
 // src/components/HeroSection.jsx
 import React from "react";
+import MainBanner from "../assets/main-banner.jpg"
 
 const HeroSection = ({ title, subtitle}) => {
   return (
@@ -7,7 +8,7 @@ const HeroSection = ({ title, subtitle}) => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src='/banner.jpg'
+          src={MainBanner}
           alt={`${title} background`}
           className="w-full h-full object-cover"
         />

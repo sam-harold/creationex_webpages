@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 // Local imports
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import MainBanner from "../assets/main-banner.jpg"
 
 // Import events and slides data
 import { UPCOMING_EVENTS } from '../data/events';
@@ -59,7 +60,7 @@ const Home = () => {
       {/* Main Content */}
       <AnimatedSection animationType="fadeIn" delay={0} className="min-h-[calc(100vh-72px)] flex flex-col lg:flex-row">
         {/* Left Panel - Hero Section */}
-        <div className="w-full lg:w-1/2 h-[90vh] lg:h-auto flex flex-col justify-center p-6 md:p-8 lg:p-16 relative bg-cover bg-center" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${'/banner.jpg'})`, }}>
+        <div className="w-full lg:w-1/2 h-[90vh] lg:h-auto flex flex-col justify-center p-6 md:p-8 lg:p-16 relative bg-cover bg-center" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${MainBanner})`, }}>
           <div className="relative z-10">
             <h1 className="text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-8 leading-tight">
               Unite.
