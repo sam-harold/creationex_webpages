@@ -1,4 +1,3 @@
-import Event1 from "../assets/event1.jpg";
 import Event2 from "../assets/main-banner.jpg";
 
 export const UPCOMING_EVENTS = [
@@ -10,7 +9,7 @@ export const UPCOMING_EVENTS = [
     displayDate: '15 September 2025',
     venue: 'Online - Zoom',
     active: true,
-    image: Event1,
+    image: Event2,
   },
   {
     id: 'tech-talk-modern-javascript-trends',
