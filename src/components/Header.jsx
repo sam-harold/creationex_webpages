@@ -65,7 +65,7 @@ const Header = () => {
 
         {/* Desktop Navigation Start */}
         <nav className="hidden md:flex items-center gap-8 font-medium text-sm">
-          <Link to="/about" className="hover:text-gray-300 transition-colors">
+          <Link to="/events" className="hover:text-gray-300 transition-colors">
             Events
           </Link>
 
