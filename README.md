@@ -22,10 +22,18 @@ We welcome contributions to improve this project.
 
 ### Steps to Contribute
 1. Fork this repository
-2. Create your feature branch (`git checkout -b feature/YourFeature`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to your branch (`git push origin feature/YourFeature`)
-5. Open a Pull Request for review
+2. Create your feature branch
+3. Add all/specific files
+4. Commit your changes
+5. Push to your branch to repository
+6. Open a Pull Request for review (Only by project lead)
+
+```bash
+# Example of pushing about content updates.
+git checkout -b update/about-contents
+git add .
+git commit -m 'About content updates'
+git push origin update/about-contents
 
 By submitting a Pull Request:
 - You grant permission for your work to be merged and distributed under the MIT License.
@@ -63,4 +71,4 @@ By submitting a Pull Request:
 git clone https://github.com/Samhrld-collab/creationex.dev.git
 cd creationex.dev
 npm install
-npm start
+npm run dev # Start development server
