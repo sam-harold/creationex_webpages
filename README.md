@@ -34,6 +34,7 @@ git checkout -b update/about-contents
 git add .
 git commit -m 'About content updates'
 git push origin update/about-contents
+```bash
 
 By submitting a Pull Request:
 - You grant permission for your work to be merged and distributed under the MIT License.
