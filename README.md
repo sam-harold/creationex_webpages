@@ -55,6 +55,7 @@ By submitting a Pull Request:
 ### Prerequisites
 - Node.js (v18+ recommended)
 - npm or yarn
+- Git
 
 ### Installation
 
