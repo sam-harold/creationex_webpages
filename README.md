@@ -1,6 +1,6 @@
 # CreatioNeX
 
-A **frontend development project for student-led organisation webpages**. It provides organizations with an online presence that improves community engagement, event promotion and overall visibility.
+[CreatioNeX](https://samhrld-collab.github.io/creationex.dev/) A **frontend development project for student-led organisation webpages**. It provides organizations with an online presence that improves community engagement, event promotion and overall visibility.
 
 ![home_creationex](home_creationex.png)
 
