@@ -29,7 +29,7 @@ const TermsOfService = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Use License</h2>
           <p className="text-gray-700 mb-6">
             Permission is granted to temporarily download one copy of the
-            materials on [Your Company Name]'s website for personal,
+            materials on CreatioNeX's website for personal,
             non-commercial transitory viewing only. This is the grant of a
             license, not a transfer of title, and under this license you may
             not:
@@ -42,7 +42,7 @@ const TermsOfService = () => {
             </li>
             <li>
               Attempt to decompile or reverse engineer any software contained on
-              [Your Company Name]'s website;
+              CreatioNeX's website;
             </li>
             <li>
               Remove any copyright or other proprietary notations from the
@@ -130,7 +130,7 @@ const TermsOfService = () => {
           </h2>
           <p className="text-gray-700 mb-6">
             The services and its original content, features, and functionality
-            are and will remain the exclusive property of [Your Company Name]
+            are and will remain the exclusive property of CreatioNeX
             and its licensors. The services are protected by copyright,
             trademark, and other laws of both the United States and foreign
             countries.
@@ -149,7 +149,7 @@ const TermsOfService = () => {
           </h2>
           <p className="text-gray-700 mb-6">
             These Terms shall be governed and construed in accordance with the
-            laws of [Your Jurisdiction], without regard to its conflict of law
+            laws of Malaysia, without regard to its conflict of law
             provisions.
           </p>
 
@@ -167,7 +167,7 @@ const TermsOfService = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Us</h2>
           <p className="text-gray-700 mb-6">
             If you have any questions about these Terms, please contact us at:
-            [Your Company Name] [Email Address] [Phone Number] [Mailing Address]
+            legal@creationex.org
           </p>
         </div>
       </section>

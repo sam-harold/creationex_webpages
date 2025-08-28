@@ -19,7 +19,6 @@ const Store = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('featured');
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [quantities, setQuantities] = useState({});
 
   const categories = [
     { id: 'all', name: 'All Products', count: mockProducts.length },
@@ -37,12 +36,6 @@ const Store = () => {
 
   useEffect(() => {
     setProducts(mockProducts);
-    // Initialize quantities
-    const initialQuantities = {};
-    mockProducts.forEach((product) => {
-      initialQuantities[product.id] = 1;
-    });
-    setQuantities(initialQuantities);
   }, []);
 
   const filteredProducts = products.filter(
@@ -65,13 +58,13 @@ const Store = () => {
     }
   });
 
-  const addToCart = (product, selectedSize = null, selectedColor = null) => {
+  const addToCart = (product, quantity, selectedSize = null, selectedColor = null) => {
     const cartItem = {
       ...product,
       cartId: `${product.id}-${selectedSize || 'default'}-${selectedColor || 'default'}`,
       selectedSize,
       selectedColor,
-      quantity: quantities[product.id] || 1,
+      quantity,
     };
 
     setCart((prevCart) => {
@@ -113,7 +106,8 @@ const Store = () => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const ProductCard = ({ product }) => {
+  // Memoized ProductCard
+  const ProductCard = React.memo(({ product }) => {
     const [selectedSize, setSelectedSize] = useState(
       product.sizes ? product.sizes[0] : null
     );
@@ -121,6 +115,7 @@ const Store = () => {
       product.colors ? product.colors[0] : null
     );
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [quantity, setQuantity] = useState(1);
 
     return (
       <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
@@ -150,8 +145,13 @@ const Store = () => {
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
               {product.images.map((_, index) => (
                 <button
+                  type="button"
                   key={index}
-                  onClick={() => setCurrentImageIndex(index)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentImageIndex(index);
+                    e.currentTarget.blur();
+                  }}
                   className={`w-2 h-2 rounded-full ${
                     currentImageIndex === index
                       ? 'bg-white'
@@ -237,29 +237,22 @@ const Store = () => {
             </h4>
             <div className="flex items-center space-x-3">
               <button
-                onClick={() =>
-                  setQuantities((prev) => ({
-                    ...prev,
-                    [product.id]: Math.max(1, (prev[product.id] || 1) - 1),
-                  }))
-                }
+                type="button"
+                onClick={e => {
+                  setQuantity(q => Math.max(1, q - 1));
+                  e.currentTarget.blur();
+                }}
                 className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50"
               >
                 <Minus className="w-4 h-4" />
               </button>
-              <span className="font-semibold">
-                {quantities[product.id] || 1}
-              </span>
+              <span className="font-semibold">{quantity}</span>
               <button
-                onClick={() =>
-                  setQuantities((prev) => ({
-                    ...prev,
-                    [product.id]: Math.min(
-                      product.stock,
-                      (prev[product.id] || 1) + 1
-                    ),
-                  }))
-                }
+                type="button"
+                onClick={e => {
+                  setQuantity(q => Math.min(product.stock, q + 1));
+                  e.currentTarget.blur();
+                }}
                 className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50"
               >
                 <Plus className="w-4 h-4" />
@@ -281,7 +274,11 @@ const Store = () => {
 
           {/* Add to Cart Button */}
           <button
-            onClick={() => addToCart(product, selectedSize, selectedColor)}
+            type="button"
+            onClick={e => {
+              addToCart(product, quantity, selectedSize, selectedColor);
+              e.currentTarget.blur();
+            }}
             disabled={product.stock === 0}
             className="w-full bg-orange-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-orange-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition duration-300 transform hover:scale-105 mt-auto"
           >
@@ -290,7 +287,7 @@ const Store = () => {
         </div>
       </div>
     );
-  };
+  });
 
   const CartSidebar = () => {
     return (
@@ -319,7 +316,11 @@ const Store = () => {
                   Shopping Cart ({getTotalItems()})
                 </h2>
                 <button
-                  onClick={() => setIsCartOpen(false)}
+                  type="button"
+                  onClick={e => {
+                    setIsCartOpen(false);
+                    e.currentTarget.blur();
+                  }}
                   className="p-2 hover:bg-gray-100 rounded-full"
                 >
                   <X className="w-6 h-6" />
@@ -361,9 +362,11 @@ const Store = () => {
                         <div className="flex items-center justify-between mt-2">
                           <div className="flex items-center space-x-2">
                             <button
-                              onClick={() =>
-                                updateQuantity(item.cartId, item.quantity - 1)
-                              }
+                              type="button"
+                              onClick={e => {
+                                updateQuantity(item.cartId, item.quantity - 1);
+                                e.currentTarget.blur();
+                              }}
                               className="w-6 h-6 rounded-full bg-white border border-gray-300 flex items-center justify-center text-sm"
                             >
                               <Minus className="w-4 h-4" />
@@ -372,9 +375,11 @@ const Store = () => {
                               {item.quantity}
                             </span>
                             <button
-                              onClick={() =>
-                                updateQuantity(item.cartId, item.quantity + 1)
-                              }
+                              type="button"
+                              onClick={e => {
+                                updateQuantity(item.cartId, item.quantity + 1);
+                                e.currentTarget.blur();
+                              }}
                               className="w-6 h-6 rounded-full bg-white border border-gray-300 flex items-center justify-center text-sm"
                             >
                               <Plus className="w-4 h-4" />
@@ -386,7 +391,11 @@ const Store = () => {
                         </div>
                       </div>
                       <button
-                        onClick={() => removeFromCart(item.cartId)}
+                        type="button"
+                        onClick={e => {
+                          removeFromCart(item.cartId);
+                          e.currentTarget.blur();
+                        }}
                         className="p-1 hover:bg-red-100 rounded-full text-red-500"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -406,7 +415,11 @@ const Store = () => {
                     RM{getTotalPrice().toFixed(2)}
                   </span>
                 </div>
-                <button className="w-full bg-orange-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-orange-700 transition duration-200">
+                <button
+                  type="button"
+                  className="w-full bg-orange-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-orange-700 transition duration-200"
+                  onClick={e => e.currentTarget.blur()}
+                >
                   Proceed to Checkout
                 </button>
               </div>
@@ -427,15 +440,18 @@ const Store = () => {
 
       {/* Sticky Filters and Cart Navbar */}
       <div className="sticky top-20 z-30 bg-gray-50 shadow-md py-4">
-        {' '}
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             {/* Categories */}
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <button
+                  type="button"
                   key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
+                  onClick={e => {
+                    setSelectedCategory(category.id);
+                    e.currentTarget.blur();
+                  }}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                     selectedCategory === category.id
                       ? 'bg-orange-600 text-white'
@@ -462,7 +478,11 @@ const Store = () => {
                 <option value="rating">Rating</option>
               </select>
               <button
-                onClick={() => setIsCartOpen(true)}
+                type="button"
+                onClick={e => {
+                  setIsCartOpen(true);
+                  e.currentTarget.blur();
+                }}
                 className="relative p-2 hover:bg-gray-200 rounded-full"
               >
                 <ShoppingCart className="w-6 h-6 text-gray-700" />
@@ -486,7 +506,7 @@ const Store = () => {
             </p>
           </div>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {sortedProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
