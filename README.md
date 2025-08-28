@@ -1,12 +1,9 @@
 # CreatioNeX
 
----
-
 A **frontend development project for student-led organisation webpages**. It provides organizations with an online presence that improves community engagement, event promotion and overall visibility.
 
 ![home_creationex](home_creationex.png)
 
----
 
 ## 🛠 Tech Stack
 
@@ -32,7 +29,6 @@ A **frontend development project for student-led organisation webpages**. It pro
   "swiper": "latest"
 }
 ```
----
 
 ## 🚀 Getting Start
 
@@ -79,8 +75,6 @@ npm run format
 
 We welcome contributions to improve this project. [Contribution Guidelines Here.](CONTRIBUTING.md)
 
----
-
 ## 🌟 Project Features
 
 ### Pages & Functionality
@@ -102,8 +96,6 @@ We welcome contributions to improve this project. [Contribution Guidelines Here.
 - **Multimedia Integration** - Images, video content and interactive maps.
 - **Performance Optimized** - Lazy loading, code splitting and image optimization.
 
----
-
 ## 📈 Performance Optimizations
 
 - **Code Splitting:** Component-level splitting for faster initial load
@@ -111,8 +103,6 @@ We welcome contributions to improve this project. [Contribution Guidelines Here.
 - **Image Optimization:** Responsive images with multiple size variants
 - **Bundle Optimization:** Tree shaking and minification
 - **CSS Optimization:** Tailwind CSS purging for smaller bundle size
-
----
 
 ## 👏 Credits
 
@@ -128,8 +118,6 @@ We welcome contributions to improve this project. [Contribution Guidelines Here.
 
 - Course Instructor: [Mr. Nazmirul Izzad Bin Nassir](https://github.com/izzad2413)
 - City University Malaysia - Faculty of Information Technology
-
----
 
 ## 📄 License
 
