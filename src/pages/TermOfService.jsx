@@ -29,10 +29,9 @@ const TermsOfService = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Use License</h2>
           <p className="text-gray-700 mb-6">
             Permission is granted to temporarily download one copy of the
-            materials on CreatioNeX's website for personal,
-            non-commercial transitory viewing only. This is the grant of a
-            license, not a transfer of title, and under this license you may
-            not:
+            materials on CreatioNeX's website for personal, non-commercial
+            transitory viewing only. This is the grant of a license, not a
+            transfer of title, and under this license you may not:
           </p>
           <ul className="list-disc list-inside text-gray-700 mb-6 space-y-2">
             <li>Modify or copy the materials;</li>
@@ -130,10 +129,9 @@ const TermsOfService = () => {
           </h2>
           <p className="text-gray-700 mb-6">
             The services and its original content, features, and functionality
-            are and will remain the exclusive property of CreatioNeX
-            and its licensors. The services are protected by copyright,
-            trademark, and other laws of both the United States and foreign
-            countries.
+            are and will remain the exclusive property of CreatioNeX and its
+            licensors. The services are protected by copyright, trademark, and
+            other laws of both the United States and foreign countries.
           </p>
 
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Termination</h2>
@@ -149,8 +147,7 @@ const TermsOfService = () => {
           </h2>
           <p className="text-gray-700 mb-6">
             These Terms shall be governed and construed in accordance with the
-            laws of Malaysia, without regard to its conflict of law
-            provisions.
+            laws of Malaysia, without regard to its conflict of law provisions.
           </p>
 
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
