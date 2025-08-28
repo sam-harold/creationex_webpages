@@ -58,7 +58,12 @@ const Store = () => {
     }
   });
 
-  const addToCart = (product, quantity, selectedSize = null, selectedColor = null) => {
+  const addToCart = (
+    product,
+    quantity,
+    selectedSize = null,
+    selectedColor = null
+  ) => {
     const cartItem = {
       ...product,
       cartId: `${product.id}-${selectedSize || 'default'}-${selectedColor || 'default'}`,
@@ -238,8 +243,8 @@ const Store = () => {
             <div className="flex items-center space-x-3">
               <button
                 type="button"
-                onClick={e => {
-                  setQuantity(q => Math.max(1, q - 1));
+                onClick={(e) => {
+                  setQuantity((q) => Math.max(1, q - 1));
                   e.currentTarget.blur();
                 }}
                 className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50"
@@ -249,8 +254,8 @@ const Store = () => {
               <span className="font-semibold">{quantity}</span>
               <button
                 type="button"
-                onClick={e => {
-                  setQuantity(q => Math.min(product.stock, q + 1));
+                onClick={(e) => {
+                  setQuantity((q) => Math.min(product.stock, q + 1));
                   e.currentTarget.blur();
                 }}
                 className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50"
@@ -275,7 +280,7 @@ const Store = () => {
           {/* Add to Cart Button */}
           <button
             type="button"
-            onClick={e => {
+            onClick={(e) => {
               addToCart(product, quantity, selectedSize, selectedColor);
               e.currentTarget.blur();
             }}
@@ -317,7 +322,7 @@ const Store = () => {
                 </h2>
                 <button
                   type="button"
-                  onClick={e => {
+                  onClick={(e) => {
                     setIsCartOpen(false);
                     e.currentTarget.blur();
                   }}
@@ -363,7 +368,7 @@ const Store = () => {
                           <div className="flex items-center space-x-2">
                             <button
                               type="button"
-                              onClick={e => {
+                              onClick={(e) => {
                                 updateQuantity(item.cartId, item.quantity - 1);
                                 e.currentTarget.blur();
                               }}
@@ -376,7 +381,7 @@ const Store = () => {
                             </span>
                             <button
                               type="button"
-                              onClick={e => {
+                              onClick={(e) => {
                                 updateQuantity(item.cartId, item.quantity + 1);
                                 e.currentTarget.blur();
                               }}
@@ -392,7 +397,7 @@ const Store = () => {
                       </div>
                       <button
                         type="button"
-                        onClick={e => {
+                        onClick={(e) => {
                           removeFromCart(item.cartId);
                           e.currentTarget.blur();
                         }}
@@ -418,7 +423,7 @@ const Store = () => {
                 <button
                   type="button"
                   className="w-full bg-orange-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-orange-700 transition duration-200"
-                  onClick={e => e.currentTarget.blur()}
+                  onClick={(e) => e.currentTarget.blur()}
                 >
                   Proceed to Checkout
                 </button>
@@ -448,7 +453,7 @@ const Store = () => {
                 <button
                   type="button"
                   key={category.id}
-                  onClick={e => {
+                  onClick={(e) => {
                     setSelectedCategory(category.id);
                     e.currentTarget.blur();
                   }}
@@ -479,7 +484,7 @@ const Store = () => {
               </select>
               <button
                 type="button"
-                onClick={e => {
+                onClick={(e) => {
                   setIsCartOpen(true);
                   e.currentTarget.blur();
                 }}
