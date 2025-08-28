@@ -13,7 +13,7 @@ const NotFound = () => {
         <div className="text-center max-w-2xl">
           {/* 404 Number */}
           <div className="mb-8">
-            <h1 className="text-8xl md:text-9xl font-bold text-transparent bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+            <h1 className="text-8xl md:text-9xl font-bold text-transparent bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text">
               404
             </h1>
           </div>

@@ -11,15 +11,7 @@ const Team = () => {
     {
       id: 1,
       image:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&face',
-      name: 'Sam Harold',
-      title: 'Student | SOC, UBO',
-      position: 'Head of CreatioNeX',
-    },
-    {
-      id: 2,
-      image:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=300&fit=crop&face',
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png',
       name: 'Nadzmirul Izzad',
       title: 'Lecturer II | SOC, UBO',
       position: 'Patron Advisor',
@@ -30,38 +22,45 @@ const Team = () => {
     {
       id: 1,
       image:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=300&fit=crop&face',
-      name: 'Muhammad Syahir',
-      position: 'Peasant',
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png',
+      name: 'Sam Harold',
+      position: 'Head of CreatioNeX',
     },
     {
       id: 2,
       image:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&face',
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png',
       name: 'Janwell Edmaxron',
-      position: 'Peasant',
+      position: 'Logistics Lead',
     },
     {
       id: 3,
       image:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=300&fit=crop&face',
-      name: 'Jude Jerry',
-      position: 'Peasant',
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png',
+      name: 'Muhammad Syahir',
+      position: 'Finance Lead',
     },
     {
       id: 4,
       image:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=300&fit=crop&face',
-      name: 'Ibragimova Diiara',
-      position: 'Peasant',
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png',
+      name: 'Seydna Ali',
+      position: 'Public Relations Lead',
     },
     {
       id: 5,
       image:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=400&h=300&fit=crop&face',
-      name: 'Carlson',
-      position: 'Peasant',
-    }
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png',
+      name: 'Selvam Mani',
+      position: 'Technical Lead',
+    },
+    {
+      id: 5,
+      image:
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png',
+      name: 'Muhammad Alyas',
+      position: 'Creativity Lead',
+    },
   ];
 
   // Component for member card to avoid repetition
@@ -81,7 +80,7 @@ const Team = () => {
       <h3 className="text-xl font-semibold text-gray-900 mb-2">
         {member.name}
       </h3>
-      <p className="text-blue-600 font-medium">{member.position}</p>
+      <p className="text-orange-600 font-medium">{member.position}</p>
       {showTitle && member.title && (
         <p className="text-gray-600 text-sm mt-1">{member.title}</p>
       )}
@@ -91,10 +90,7 @@ const Team = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      <HeroSection
-        title="The Team"
-        subtitle="Meet People Behind Our Success"
-      />
+      <HeroSection title="The Team" subtitle="Meet People Behind Our Success" />
 
       {/* Meet the Advisory Section */}
       <section className="py-20 px-4">
@@ -113,7 +109,7 @@ const Team = () => {
           </AnimatedSection>
 
           <StaggerContainer
-            staggerDelay={150}
+            staggerDelay={50}
             className="flex flex-wrap justify-center gap-8"
           >
             {advisoryMemberItems.map((member) => (
@@ -128,7 +124,7 @@ const Team = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Board Members
+              Executive Team
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Dedicated individuals working together to achieve our mission

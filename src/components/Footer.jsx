@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Facebook,
   Instagram,
-  Twitter,
   Linkedin,
   Youtube,
   Mail,
@@ -19,13 +17,13 @@ const Footer = () => {
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
     { name: 'Events', path: '/events' },
+    { name: 'Initiatives', path: '/initiatives' },
     { name: 'Team', path: '/team' },
     { name: 'Contact', path: '/contact' },
-    { name: 'Join Us', path: '/join' },
   ];
 
   const resources = [
-    { name: 'Student Voices', path: '/publications' },
+    { name: 'Community Voices', path: '/voices' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Resources', path: '/resources' },
     { name: 'FAQ', path: '/faq' },
@@ -51,18 +49,11 @@ const Footer = () => {
 
   const socialLinks = [
     {
-      name: 'Facebook',
-      icon: Facebook,
-      url: '#',
-      color: 'hover:text-blue-500',
-    },
-    {
       name: 'Instagram',
       icon: Instagram,
       url: '#',
       color: 'hover:text-pink-500',
     },
-    { name: 'Twitter', icon: Twitter, url: '#', color: 'hover:text-sky-500' },
     {
       name: 'LinkedIn',
       icon: Linkedin,
@@ -80,39 +71,42 @@ const Footer = () => {
           {/* Organization Info */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <h2 className="text-2xl font-bold text-white mb-4">CreatioNeX</h2>
+              <h1 className="text-2xl font-heading mb-4 text-orange-400">
+                CreatioNeX
+              </h1>
               <p className="text-gray-300 leading-relaxed mb-6">
-                An event organisation dedicated to uniting, developing, and
-                transforming the next generation of tech leaders.
+                A student-led organisation at University of BridgeOut dedicated
+                to uniting, developing, and transforming the next generation of
+                tech leaders.
               </p>
             </div>
 
             {/* Contact Information */}
             <div className="space-y-3 mb-6">
               <div className="flex items-center text-gray-300">
-                <MapPin className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
+                <MapPin className="w-4 h-4 mr-3 text-orange-600 flex-shrink-0" />
                 <span className="text-sm">
                   University of BridgeOut
                   <br />
-                  Sunway City, Selangor
+                  TwentyFive.7, Selangor
                 </span>
               </div>
               <div className="flex items-center text-gray-300">
-                <Mail className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
+                <Mail className="w-4 h-4 mr-3 text-orange-600 flex-shrink-0" />
                 <a
-                  href="mailto:contact@foitsociety.org"
+                  href="mailto:contact@creationex.org"
                   className="text-sm hover:text-blue-400 transition-colors"
                 >
-                  contact@foitsociety.org
+                  contact@creationex.org
                 </a>
               </div>
               <div className="flex items-center text-gray-300">
-                <Phone className="w-4 h-4 mr-3 text-blue-400 flex-shrink-0" />
+                <Phone className="w-4 h-4 mr-3 text-orange-600 flex-shrink-0" />
                 <a
-                  href="tel:+60123456789"
+                  href="tel:+603-12345678"
                   className="text-sm hover:text-blue-400 transition-colors"
                 >
-                  +60 12-345 6789
+                  +603-12345678
                 </a>
               </div>
             </div>
@@ -188,19 +182,6 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-
-            {/* Newsletter Signup */}
-            <div className="bg-gray-800 rounded-lg p-4">
-              <h4 className="text-sm font-semibold text-white mb-2">
-                Stay Updated
-              </h4>
-              <p className="text-xs text-gray-400 mb-3">
-                Get the latest news and event updates
-              </p>
-              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded-md transition-colors">
-                Subscribe
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -211,7 +192,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
             <div className="text-sm text-gray-400">
-              © {currentYear} CreatioNeX.org. All rights reserved.
+              © {currentYear} creationex.org. All rights reserved.
             </div>
 
             {/* Legal Links */}

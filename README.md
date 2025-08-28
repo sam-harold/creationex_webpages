@@ -21,6 +21,7 @@ It is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for
 We welcome contributions to improve this project.
 
 ### Steps to Contribute
+
 1. Fork this repository
 2. Create your feature branch (`git checkout -b feature/YourFeature`)
 3. Commit your changes (`git commit -m 'Add some feature'`)
@@ -28,6 +29,7 @@ We welcome contributions to improve this project.
 5. Open a Pull Request for review
 
 By submitting a Pull Request:
+
 - You grant permission for your work to be merged and distributed under the MIT License.
 - You acknowledge that the project owner retains overall ownership.
 
@@ -35,10 +37,12 @@ By submitting a Pull Request:
 
 ## 👏 Credits
 
-**Project Lead & Original Author:**  
+**Project Lead & Original Author:**
+
 - [Sam Harold](https://github.com/Samhrld-collab)
 
-**Contributors:**  
+**Contributors:**
+
 - See GitHub's [contributors graph](../../graphs/contributors) for the full list of collaborators.
 
 ---
@@ -53,6 +57,7 @@ By submitting a Pull Request:
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js (v18+ recommended)
 - npm or yarn
 
@@ -63,3 +68,4 @@ git clone https://github.com/Samhrld-collab/creationex.dev.git
 cd creationex.dev
 npm install
 npm start
+```

@@ -17,7 +17,7 @@ export default defineConfig([
       ecmaVersion: 2020,
       globals: {
         ...globals.browser,
-        ...globals.node, // ← Add this line to fix 'module' and 'process' errors
+        ...globals.node,
       },
       parserOptions: {
         ecmaVersion: 'latest',

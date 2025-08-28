@@ -1,30 +1,32 @@
-// Slides data for the homepage carousel
 export const HOMEPAGE_SLIDES = [
   {
     id: 1,
-    title: 'Top </> Coders Stage',
+    title: 'CreatioNeX 2025',
     description:
-      'Congratulations to the Top 5 team who will represent City University at Nationwide Level',
-    details: '8th July 2025 | Multipurpose Hall - CityU Cyberjaya',
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop',
-    learnMoreLink: '/king',
+      'A room where future tech leaders, presenting records breaking inventions.',
+    details: '8th July 2025 | Innovation Hub - University of BridgeOut',
+    image:
+      'https://images.pexels.com/photos/28378126/pexels-photo-28378126.jpeg',
+    subtitle: 'FLAGSHIP',
+    learnMoreLink: '/events',
   },
   {
     id: 2,
-    title: 'To Be Announce',
+    title: 'Games Day',
     description: 'Beyond the classroom, we have educational fun!',
-    details: '8th July 2025 | Multipurpose Hall - CityU Cyberjaya',
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop',
-    learnMoreLink: '/king',
+    details: '8th July 2025 | Multipurpose Hall - University of BridgeOut',
+    image:
+      'https://images.pexels.com/photos/29273115/pexels-photo-29273115.jpeg',
   },
   {
     id: 3,
-    title: 'To Be Announce',
+    title: 'Annual General Meeting',
     description:
-      'Meet your FOIT Student Society Committee Members, the launch of merchandise and exposure to future events',
-    details: '15th August 2025 | Auditorium - CityU Cyberjaya',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop',
+      'Meet your Community, the launch of merchandise and exposure to future events.',
+    details: '15th August 2025 | Auditorium - University of BridgeOut',
+    image:
+      'https://images.pexels.com/photos/18999565/pexels-photo-18999565.jpeg',
     subtitle: 'COMING SOON',
-    learnMoreLink: '/king',
+    // learnMoreLink: '/king',
   },
 ];
