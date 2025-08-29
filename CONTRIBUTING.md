@@ -2,8 +2,6 @@
 
 We welcome contributions to improve this project.
 
----
-
 ### Steps to Contribute
 
 1. **Fork this repository**
@@ -34,14 +32,12 @@ git push origin update/about-contents
 
 ### Contribution Guidelines
 
-- Follow existing code style and conventions
-- Write clear, descriptive commit messages
-- Test your changes across different devices and browsers
-- Update documentation if necessary
+- Follow existing code style and conventions.
+- Write clear, descriptive commit messages.
+- Test your changes across different devices and browsers.
+- Update documentation if necessary.
 
 By submitting a Pull Request:
 
-- You grant permission for your work to be merged and distributed under the MIT License
-- You acknowledge that the project owner retains overall ownership
-
----
+- You grant permission for your work to be merged and distributed under the MIT License.
+- You acknowledge that the project owner retains overall ownership.
