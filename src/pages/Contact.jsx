@@ -50,23 +50,23 @@ const Contact = () => {
   // Contact information data
   const contactInfo = [
     {
-      icon: <MapPin className="w-6 h-6 text-indigo-500" />,
+      icon: <MapPin className="w-6 h-6 text-orange-600" />,
       title: 'Address',
       content:
-        'University of BridgeOut Persiaran Oleander, TwentyFive.7, 42500 Telok Panglima Garang, Selangor',
+        'University of BridgeOut, Persiaran Oleander, TwentyFive.7, 42500 Telok Panglima Garang, Selangor',
     },
     {
-      icon: <Phone className="w-6 h-6 text-indigo-500" />,
+      icon: <Phone className="w-6 h-6 text-orange-600" />,
       title: 'Phone',
       content: '+603-12345678',
     },
     {
-      icon: <Mail className="w-6 h-6 text-indigo-500" />,
+      icon: <Mail className="w-6 h-6 text-orange-600" />,
       title: 'Email',
       content: 'contact@creationex.org',
     },
     {
-      icon: <Clock className="w-6 h-6 text-indigo-500" />,
+      icon: <Clock className="w-6 h-6 text-orange-600" />,
       title: 'Business Hours',
       content: 'Mon - Fri: 9:00 AM - 6:00 PM',
     },
@@ -97,7 +97,7 @@ const Contact = () => {
                   className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 transition-transform duration-300 hover:scale-[1.02]"
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center">
+                    <div className="flex-shrink-0 w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center">
                       {info.icon}
                     </div>
                     <div className="flex-1">
@@ -172,7 +172,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 transition-colors duration-200"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition-colors duration-200"
                       placeholder="Your name"
                     />
                   </div>
@@ -190,7 +190,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 transition-colors duration-200"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition-colors duration-200"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -210,7 +210,7 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 transition-colors duration-200"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition-colors duration-200"
                     placeholder="What's this about?"
                   />
                 </div>
@@ -229,7 +229,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 transition-colors duration-200 resize-none"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition-colors duration-200 resize-none"
                     placeholder="Tell us more about your inquiry..."
                   />
                 </div>
@@ -237,7 +237,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-indigo-600 text-white py-4 px-6 rounded-xl font-semibold hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300 shadow-lg"
+                  className="w-full bg-orange-600 text-white py-4 px-6 rounded-xl font-semibold hover:bg-orange-700 focus:ring-2 focus:ring-orange-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300 shadow-lg"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center">
