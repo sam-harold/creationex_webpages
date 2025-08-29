@@ -1,529 +1,207 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer.jsx';
 import HeroSection from '../components/HeroSection.jsx';
-import {
-  Star,
-  Minus,
-  Plus,
-  X,
-  ShoppingBag,
-  Trash2,
-  ShoppingCart,
-} from 'lucide-react';
-import { mockProducts } from '../data/mockProducts';
 
-const Store = () => {
-  const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [sortBy, setSortBy] = useState('featured');
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
-  const categories = [
-    { id: 'all', name: 'All Products', count: mockProducts.length },
-    {
-      id: 'apparel',
-      name: 'Apparel',
-      count: mockProducts.filter((p) => p.category === 'apparel').length,
-    },
-    {
-      id: 'accessories',
-      name: 'Accessories',
-      count: mockProducts.filter((p) => p.category === 'accessories').length,
-    },
-  ];
-
-  useEffect(() => {
-    setProducts(mockProducts);
-  }, []);
-
-  const filteredProducts = products.filter(
-    (product) =>
-      selectedCategory === 'all' || product.category === selectedCategory
-  );
-
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    switch (sortBy) {
-      case 'price-low':
-        return a.price - b.price;
-      case 'price-high':
-        return b.price - a.price;
-      case 'name':
-        return a.name.localeCompare(b.name);
-      case 'rating':
-        return b.rating - a.rating;
-      default:
-        return b.featured ? 1 : -1;
-    }
-  });
-
-  const addToCart = (
-    product,
-    quantity,
-    selectedSize = null,
-    selectedColor = null
-  ) => {
-    const cartItem = {
-      ...product,
-      cartId: `${product.id}-${selectedSize || 'default'}-${selectedColor || 'default'}`,
-      selectedSize,
-      selectedColor,
-      quantity,
-    };
-
-    setCart((prevCart) => {
-      const existingItem = prevCart.find(
-        (item) => item.cartId === cartItem.cartId
-      );
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.cartId === cartItem.cartId
-            ? { ...item, quantity: item.quantity + cartItem.quantity }
-            : item
-        );
-      }
-      return [...prevCart, cartItem];
-    });
-  };
-
-  const removeFromCart = (cartId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.cartId !== cartId));
-  };
-
-  const updateQuantity = (cartId, newQuantity) => {
-    if (newQuantity === 0) {
-      removeFromCart(cartId);
-      return;
-    }
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.cartId === cartId ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  };
-
-  const getTotalPrice = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
-
-  const getTotalItems = () => {
-    return cart.reduce((total, item) => total + item.quantity, 0);
-  };
-
-  const ProductCard = React.memo(({ product }) => {
-    const [selectedSize, setSelectedSize] = useState(
-      product.sizes ? product.sizes[0] : null
-    );
-    const [selectedColor, setSelectedColor] = useState(
-      product.colors ? product.colors[0] : null
-    );
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [quantity, setQuantity] = useState(1);
-
-    return (
-      <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
-        {/* Product Image */}
-        <div className="relative overflow-hidden flex-shrink-0">
-          <img
-            src={
-              product.images && product.images.length > 0
-                ? `${product.images[currentImageIndex]}?auto=compress&cs=tinysrgb&h=650&w=940`
-                : product.image
-                  ? `${product.image}?auto=compress&cs=tinysrgb&h=650&w=940`
-                  : ''
-            }
-            alt={product.name}
-            className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-          {product.featured && (
-            <div className="absolute top-4 right-4">
-              <span className="bg-blue-700 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                Featured
-              </span>
-            </div>
-          )}
-
-          {/* Image Navigation */}
-          {product.images && product.images.length > 1 && (
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-              {product.images.map((_, index) => (
-                <button
-                  type="button"
-                  key={index}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setCurrentImageIndex(index);
-                    e.currentTarget.blur();
-                  }}
-                  className={`w-2 h-2 rounded-full ${
-                    currentImageIndex === index
-                      ? 'bg-white'
-                      : 'bg-white bg-opacity-50'
-                  }`}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Product Info */}
-        <div className="p-6 flex flex-col flex-grow">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-lg font-bold text-gray-900 line-clamp-2">
-              {product.name}
-            </h3>
-          </div>
-
-          {/* Rating */}
-          <div className="flex items-center mb-3">
-            <div className="flex items-center">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
-                />
-              ))}
-            </div>
-            <span className="ml-2 text-sm text-gray-600">
-              {product.rating} ({product.reviews} reviews)
-            </span>
-          </div>
-
-          {/* Description */}
-          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-            {product.description}
-          </p>
-
-          {/* Options */}
-          {product.sizes && (
-            <div className="mb-4">
-              <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                Size:
-              </h4>
-              <select
-                value={selectedSize}
-                onChange={(e) => setSelectedSize(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-orange-600"
-              >
-                {product.sizes.map((size) => (
-                  <option key={size} value={size}>
-                    {size}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-
-          {product.colors && (
-            <div className="mb-4">
-              <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                Color:
-              </h4>
-              <select
-                value={selectedColor}
-                onChange={(e) => setSelectedColor(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-orange-600"
-              >
-                {product.colors.map((color) => (
-                  <option key={color} value={color}>
-                    {color}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-
-          {/* Quantity */}
-          <div className="mb-4">
-            <h4 className="text-sm font-semibold text-gray-900 mb-2">
-              Quantity:
-            </h4>
-            <div className="flex items-center space-x-3">
-              <button
-                type="button"
-                onClick={(e) => {
-                  setQuantity((q) => Math.max(1, q - 1));
-                  e.currentTarget.blur();
-                }}
-                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50"
-              >
-                <Minus className="w-4 h-4" />
-              </button>
-              <span className="font-semibold">{quantity}</span>
-              <button
-                type="button"
-                onClick={(e) => {
-                  setQuantity((q) => Math.min(product.stock, q + 1));
-                  e.currentTarget.blur();
-                }}
-                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50"
-              >
-                <Plus className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Price and Stock */}
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center space-x-2">
-              <span className="text-2xl font-bold text-gray-900">
-                RM{product.price.toFixed(2)}
-              </span>
-            </div>
-            <span className="text-sm text-gray-600">
-              {product.stock} in stock
-            </span>
-          </div>
-
-          {/* Add to Cart Button */}
-          <button
-            type="button"
-            onClick={(e) => {
-              addToCart(product, quantity, selectedSize, selectedColor);
-              e.currentTarget.blur();
-            }}
-            disabled={product.stock === 0}
-            className="w-full bg-orange-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-orange-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition duration-300 transform hover:scale-105 mt-auto"
-          >
-            {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
-          </button>
-        </div>
-      </div>
-    );
-  });
-
-  const CartSidebar = () => {
-    return (
-      <div
-        className={`fixed inset-0 z-50 ${isCartOpen ? '' : 'pointer-events-none'}`}
-      >
-        {/* Backdrop */}
-        <div
-          className={`absolute inset-0 bg-black transition-opacity duration-300 ${
-            isCartOpen ? 'opacity-50' : 'opacity-0'
-          }`}
-          onClick={() => setIsCartOpen(false)}
-        />
-
-        {/* Sidebar */}
-        <div
-          className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl transform transition-transform duration-300 ${
-            isCartOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
-        >
-          <div className="flex flex-col h-full">
-            {/* Header */}
-            <div className="p-6 border-b border-gray-200">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold">
-                  Shopping Cart ({getTotalItems()})
-                </h2>
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    setIsCartOpen(false);
-                    e.currentTarget.blur();
-                  }}
-                  className="p-2 hover:bg-gray-100 rounded-full"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-            </div>
-
-            {/* Cart Items */}
-            <div className="flex-1 overflow-y-auto p-6">
-              {cart.length === 0 ? (
-                <div className="text-center py-12">
-                  <ShoppingBag className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-500">Your cart is empty</p>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {cart.map((item) => (
-                    <div
-                      key={item.cartId}
-                      className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg"
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-16 h-16 object-cover rounded-lg"
-                      />
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-sm">{item.name}</h3>
-                        {item.selectedSize && (
-                          <p className="text-xs text-gray-600">
-                            Size: {item.selectedSize}
-                          </p>
-                        )}
-                        {item.selectedColor && (
-                          <p className="text-xs text-gray-600">
-                            Color: {item.selectedColor}
-                          </p>
-                        )}
-                        <div className="flex items-center justify-between mt-2">
-                          <div className="flex items-center space-x-2">
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                updateQuantity(item.cartId, item.quantity - 1);
-                                e.currentTarget.blur();
-                              }}
-                              className="w-6 h-6 rounded-full bg-white border border-gray-300 flex items-center justify-center text-sm"
-                            >
-                              <Minus className="w-4 h-4" />
-                            </button>
-                            <span className="text-sm font-semibold">
-                              {item.quantity}
-                            </span>
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                updateQuantity(item.cartId, item.quantity + 1);
-                                e.currentTarget.blur();
-                              }}
-                              className="w-6 h-6 rounded-full bg-white border border-gray-300 flex items-center justify-center text-sm"
-                            >
-                              <Plus className="w-4 h-4" />
-                            </button>
-                          </div>
-                          <span className="font-semibold text-sm">
-                            RM{(item.price * item.quantity).toFixed(2)}
-                          </span>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          removeFromCart(item.cartId);
-                          e.currentTarget.blur();
-                        }}
-                        className="p-1 hover:bg-red-100 rounded-full text-red-500"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Footer */}
-            {cart.length > 0 && (
-              <div className="p-6 border-t border-gray-200">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-lg font-semibold">Total:</span>
-                  <span className="text-2xl font-bold text-gray-700">
-                    RM{getTotalPrice().toFixed(2)}
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  className="w-full bg-orange-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-orange-700 transition duration-200"
-                  onClick={(e) => e.currentTarget.blur()}
-                >
-                  Proceed to Checkout
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
+const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-100">
       <Header />
       <HeroSection
-        title="CreatioNeX Shop"
-        subtitle="Show your community spirit with our exclusive merchandise"
+        title="Privacy Policy"
+        subtitle="Your privacy matters to us!"
       />
 
-      {/* Sticky Filters and Cart Navbar */}
-      <div className="sticky top-20 z-30 bg-gray-50 shadow-md py-4">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            {/* Categories */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <button
-                  type="button"
-                  key={category.id}
-                  onClick={(e) => {
-                    setSelectedCategory(category.id);
-                    e.currentTarget.blur();
-                  }}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
-                    selectedCategory === category.id
-                      ? 'bg-orange-600 text-white'
-                      : 'bg-white text-gray-700 hover:bg-gray-100'
-                  }`}
-                >
-                  {category.name} ({category.count})
-                </button>
-              ))}
-            </div>
-
-            {/* Sort and Cart */}
-            <div className="flex items-center justify-between sm:justify-end space-x-4">
-              <span className="text-gray-600 hidden sm:inline">Sort by:</span>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-orange-600"
-              >
-                <option value="featured">Featured</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="name">Name</option>
-                <option value="rating">Rating</option>
-              </select>
-              <button
-                type="button"
-                onClick={(e) => {
-                  setIsCartOpen(true);
-                  e.currentTarget.blur();
-                }}
-                className="relative p-2 hover:bg-gray-200 rounded-full"
-              >
-                <ShoppingCart className="w-6 h-6 text-gray-700" />
-                {getTotalItems() > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                    {getTotalItems()}
-                  </span>
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Products Grid */}
+      {/* Privacy Policy Content */}
       <section className="py-16 px-4 max-w-7xl mx-auto">
-        {sortedProducts.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">
-              No products found in this category.
-            </p>
-          </div>
-        ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sortedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        )}
+        <div className="bg-white rounded-lg shadow-lg p-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Introduction
+          </h2>
+          <p className="text-gray-700 mb-6">
+            At CreatioNeX, we are committed to protecting your privacy.
+            This Privacy Policy explains how we collect, use, disclose, and
+            safeguard your information when you visit our website or use our
+            services. Please read this policy carefully. If you do not agree
+            with the terms of this privacy policy, please do not access the
+            site.
+          </p>
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Information We Collect
+          </h2>
+          <p className="text-gray-700 mb-6">
+            We may collect information about you in a variety of ways. The
+            information we may collect on the Site includes:
+          </p>
+          <ul className="list-disc list-inside text-gray-700 mb-6 space-y-2">
+            <li>
+              <strong>Personal Data:</strong> Personally identifiable
+              information, such as your name, shipping address, email address,
+              and telephone number, and demographic information, such as your
+              age, gender, hometown, and interests, that you voluntarily give to
+              us when you register with the Site or when you choose to
+              participate in various activities related to the Site.
+            </li>
+            <li>
+              <strong>Derivative Data:</strong> Information our servers
+              automatically collect when you access the Site, such as your IP
+              address, your browser type, your operating system, your access
+              times, and the pages you have viewed directly before and after
+              accessing the Site.
+            </li>
+            <li>
+              <strong>Financial Data:</strong> Financial information, such as
+              data related to your payment method (e.g., valid credit card
+              number, card brand, expiration date) that we may collect when you
+              purchase, order, return, exchange, or request information about
+              our services from the Site.
+            </li>
+            <li>
+              <strong>Data From Social Networks:</strong> User information from
+              social networking sites, such as Apple’s Game Center, Facebook,
+              Google+, Instagram, Pinterest, Twitter, including your name, your
+              social network username, location, gender, birth date, email
+              address, profile picture, and public data for contacts, if you
+              connect your account to such social networks.
+            </li>
+            <li>
+              <strong>Mobile Device Data:</strong> Device information, such as
+              your mobile device ID, model, and manufacturer, and information
+              about the location of your device, if you access the Site from a
+              mobile device.
+            </li>
+          </ul>
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Use of Your Information
+          </h2>
+          <p className="text-gray-700 mb-6">
+            Having accurate information about you permits us to provide you with
+            a smooth, efficient, and customized experience. Specifically, we may
+            use information collected about you via the Site to:
+          </p>
+          <ul className="list-disc list-inside text-gray-700 mb-6 space-y-2">
+            <li>Create and manage your account.</li>
+            <li>Process your transactions.</li>
+            <li>Email you regarding your account or order.</li>
+            <li>
+              Fulfill and manage purchases, orders, payments, and other
+              transactions related to the Site.
+            </li>
+            <li>
+              Generate a personal profile about you to make future visits to the
+              Site more personalized.
+            </li>
+            <li>Increase the efficiency and operation of the Site.</li>
+            <li>
+              Monitor and analyze usage and trends to improve your experience
+              with the Site.
+            </li>
+            <li>Notify you of updates to the Site.</li>
+            <li>
+              Offer new products, services, and/or recommendations to you.
+            </li>
+            <li>Perform other business activities as needed.</li>
+          </ul>
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Disclosure of Your Information
+          </h2>
+          <p className="text-gray-700 mb-6">
+            We may share information we have collected about you in certain
+            situations. Your information may be disclosed as follows:
+          </p>
+          <ul className="list-disc list-inside text-gray-700 mb-6 space-y-2">
+            <li>
+              <strong>By Law or to Protect Rights:</strong> If we believe the
+              release of information about you is necessary to comply with the
+              law, such as to comply with a subpoena, or similar legal process,
+              and/or when we believe in good faith that disclosure is necessary
+              to protect our rights, protect your safety or the safety of
+              others, investigate fraud, or respond to a government request.
+            </li>
+            <li>
+              <strong>Business Transfers:</strong> If we are involved in a
+              merger, acquisition, or sale of all or a portion of our assets,
+              you will be notified via email and/or a prominent notice on our
+              Site of any change in ownership or uses of your personal
+              information, as well as any choices you may have regarding your
+              personal information.
+            </li>
+            <li>
+              <strong>Third-Party Service Providers:</strong> We may share your
+              information with third parties that perform services for us or on
+              our behalf, including payment processing, data analysis, email
+              delivery, hosting services, customer service, and marketing
+              assistance.
+            </li>
+          </ul>
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Security of Your Information
+          </h2>
+          <p className="text-gray-700 mb-6">
+            We use administrative, technical, and physical security measures to
+            help protect your personal information. While we have taken
+            reasonable steps to secure the personal information you provide to
+            us, please be aware that despite our efforts, no security measures
+            are perfect or impenetrable, and no method of data transmission can
+            be guaranteed against any interception or other type of misuse.
+          </p>
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Policy for Children
+          </h2>
+          <p className="text-gray-700 mb-6">
+            We do not knowingly solicit information from or market to children
+            under the age of 13. If you become aware of any data we have
+            collected from children under age 13, please contact us using the
+            contact information provided below.
+          </p>
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Changes to This Privacy Policy
+          </h2>
+          <p className="text-gray-700 mb-6">
+            We may update this Privacy Policy from time to time in order to
+            reflect, for example, changes to our practices or for other
+            operational, legal, or regulatory reasons. We will notify you of any
+            changes by posting the new Privacy Policy on this page.
+          </p>
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Us</h2>
+          <p className="text-gray-700 mb-6">
+            If you have questions or comments about this Privacy Policy, please
+            contact us at: legal@creationex.org
+          </p>
+        </div>
       </section>
 
-      {/* Cart Sidebar */}
-      <CartSidebar />
+      {/* Newsletter Section */}
+      <section className="py-16 bg-gradient-to-br from-red-600 via-orange-500 to-orange-400 text-white">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Stay Updated</h2>
+          <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+            Be the first to know about new events! Subscribe to our email
+            newsletters.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="border-2 border-white/20 px-4 py-3 rounded-lg text-gray-50"
+            />
+            <button className="bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 transform hover:scale-105">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
   );
 };
 
-export default Store;
+export default PrivacyPolicy;
