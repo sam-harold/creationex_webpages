@@ -5,7 +5,7 @@ CreatioNeX A **frontend development project for student-led organisation webpage
 ![home_creationex](home_creationex.png)
 
 
-## 🛠 Tech Stack
+## Tech Stack
 
 ![My Skills](https://go-skill-icons.vercel.app/api/icons?i=vite,react,tailwind,eslint,prettier&titles=true)
 
@@ -30,7 +30,7 @@ CreatioNeX A **frontend development project for student-led organisation webpage
 }
 ```
 
-## 🚀 Getting Start
+## Getting Start
 
 ### Prerequisites
 
@@ -75,7 +75,7 @@ npm run format
 
 We welcome contributions to improve this project. [Contribution Guidelines Here.](CONTRIBUTING.md)
 
-## 🌟 Project Features
+## Project Features
 
 ### Pages & Functionality
 
@@ -96,7 +96,7 @@ We welcome contributions to improve this project. [Contribution Guidelines Here.
 - **Multimedia Integration** - Images, video content and interactive maps.
 - **Performance Optimized** - Lazy loading, code splitting and image optimization.
 
-## 📈 Performance Optimizations
+## Performance Optimizations
 
 - **Code Splitting:** Component-level splitting for faster initial load
 - **Lazy Loading:** Images load as they enter viewport
@@ -104,7 +104,7 @@ We welcome contributions to improve this project. [Contribution Guidelines Here.
 - **Bundle Optimization:** Tree shaking and minification
 - **CSS Optimization:** Tailwind CSS purging for smaller bundle size
 
-## 👏 Credits
+## Credits
 
 **Project Lead & Original Author:**
 
@@ -119,6 +119,6 @@ We welcome contributions to improve this project. [Contribution Guidelines Here.
 - Course Instructor: [Mr. Nazmirul Izzad Bin Nassir](https://github.com/izzad2413)
 - City University Malaysia - Faculty of Information Technology
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
